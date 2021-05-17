@@ -8,13 +8,13 @@ const Backdrop = (props) => {
 
 const ModalOverlay = (props) => {
     return (
-        <div className={classes.modeal}>
+        <div className={classes.modal}>
             <div className={classes.content}>{props.children}</div>
         </div>
     );
 };
 
-export default function Modal() {
+export default function Modal(props) {
     const portalElement = document.getElementById("overlays");
     return (
         <Fragment>
