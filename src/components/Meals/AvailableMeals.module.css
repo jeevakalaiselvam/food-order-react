@@ -1,0 +1,21 @@
+.meals {
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.meals ul {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.meals ul li {
+    text-decoration: none;
+    width: 100%;
+    list-style-type: none;
+    padding: 1rem;
+}
