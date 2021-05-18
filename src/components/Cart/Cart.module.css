@@ -12,17 +12,14 @@
     text-align: center;
 }
 
-ul.cart-items {
+.cart-items {
+    width: 100%;
     display: flex;
-    justify-content: center;
+    padding: 1rem;
+    flex-direction: column;
     align-items: center;
-}
-
-ul.cart-items li {
-    list-style-type: none;
-    text-align: center;
-    text-decoration: none;
-    transform: translate(-50%, -50%);
+    max-height: 20rem;
+    overflow: scroll;
 }
 
 i.fas:hover {

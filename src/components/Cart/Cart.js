@@ -1,33 +1,58 @@
-import React from "react";
+import React, { useContext } from "react";
+import CartContext from "../../store/cart-context";
 import Button from "../UI/Button";
 import Modal from "../UI/Modal";
 import classes from "./Cart.module.css";
+import CartItem from "./CartItem";
 
-export default function Cart() {
+export default function Cart(props) {
+    const cartContext = useContext(CartContext);
+
+    const totalAmount = `$${cartContext.totalAmount.toFixed(2)}`;
+    const hasItems = cartContext.items.length > 0;
+
+    const cartItemRemoveHandler = (id) => {
+        cartContext.removeItem(id);
+    };
+
+    const cartItemAddHandler = (item) => {
+        cartContext.addItem({ ...item, amount: 1 });
+    };
+
     const cartItems = (
-        <ul className={classes["cart-items"]}>
-            {[{ id: "c1", name: "Sushi", amount: 2, price: 12.99 }].map(
-                (item) => {
-                    return <li>{item.name}</li>;
-                }
-            )}
-        </ul>
+        <div className={classes["cart-items"]}>
+            {cartContext.items.map((item) => {
+                return (
+                    <CartItem
+                        key={item.id}
+                        name={item.name}
+                        amount={item.amount}
+                        price={item.price}
+                        onRemove={cartItemRemoveHandler.bind(null, item.id)}
+                        onAdd={cartItemAddHandler.bind(null, item)}
+                    />
+                );
+            })}
+        </div>
     );
 
     return (
-        <Modal>
-            <Button width="40px">
+        <Modal onClose={props.onClose}>
+            <Button width="40px" onClick={props.onClose}>
                 <i class="fas fa-times-circle"></i>
             </Button>
+            <h1 className={classes.center}>Your Cart</h1>
             <br />
-            {cartItems}
+            <div className={classes.center}>{cartItems}</div>
             <div className={classes.total}>
                 <h1 className={classes.center}>Total Amount</h1>
-                <h2 className={classes.center}>35.62</h2>
+                <h2 className={classes.center}>{totalAmount}</h2>
             </div>
-            <div className={classes.action}>
-                <Button width="100px">Order</Button>
-            </div>
+            {hasItems && (
+                <div className={classes.action}>
+                    <Button width="100px">Order</Button>
+                </div>
+            )}
         </Modal>
     );
 }

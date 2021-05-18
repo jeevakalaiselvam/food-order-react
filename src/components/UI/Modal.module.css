@@ -3,11 +3,16 @@
     background-color: white;
     top: 50%;
     left: 50%;
-    width: 400px;
-    height: 400px;
+    width: 800px;
     transform: translate(-50%, -50%);
     background-color: #fefefe;
     border-radius: 0.5rem;
     padding: 1rem;
     z-index: 111;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+}
+
+.backdrop {
+    width: 100%;
+    background-color: red;
 }
