@@ -20,7 +20,12 @@ export default function HeaderCartButton(props) {
     useEffect(() => {
         if (items.length === 0) return;
         setButtonHighlight(true);
-        return () => {};
+        const timeout = setTimeout(() => {
+            setButtonHighlight(false);
+        }, 300);
+        return () => {
+            clearTimeout(timeout);
+        };
     }, [items]);
 
     return (
